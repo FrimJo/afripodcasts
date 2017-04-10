@@ -14,4 +14,9 @@ Run 'npm run prod' to build for production build and automatic generate service-
 
 ## Running production build using live-server
 Install live-server using 'npm install -g live-server'.
-Run 'npm run static-serve' to start a live-server hosting the static files found in '/dev' on 'http://localhost:4300'. 
+Run 'npm run static-serve' to start a live-server hosting the static files found in '/dev' on 'http://localhost:4300'.
+ 
+ ## Todo
+ - Add icons in assets/icons
+ - Add basic support for desktop version
+ - Have the audio files served through https
