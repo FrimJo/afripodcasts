@@ -1,0 +1,60 @@
+<!-- Display error message if any -->
+<div class="error-message" *ngIf="showError">{{_showError}}</div>
+
+<div class="close-container" (click)="onClose()">
+    <div></div>
+    <div></div>
+</div>
+
+<!-- The header of the component -->
+<div class="podcast-header">
+    <div class="podcast-item">
+        <img class="podcast-main-image"src="{{_image}}">
+        <div class="podcast-title">{{_title}}</div>
+        <div class="podcast-author-name">{{_author}}</div>
+    </div>
+</div>
+
+<!-- Body of the component -->
+<div class="main-container">
+
+    <!-- Display a list of episodes -->
+    <div class="episode-content">
+
+        <!-- The wrapper, which is active if selected -->
+        <div class="episode-wrapper"
+             *ngFor="let episode of _episodes; let index = index"
+             (click)="_selectedIndex = index" [ngClass]="{'active': _selectedIndex == index }">
+
+            <!-- The actual episode information -->
+            <div class="episode-item">
+                <div class="episode-number">{{episode.number}}</div>
+                <div class="episode-info-container">
+                    <div class="episode-title">{{episode.title}}</div>
+                    <div class="episode-artist">{{episode.author}}</div>
+                </div>
+
+                <!-- A controller for playing podcast episode and to see status of each episode in the list-->
+                <div class="episode-controller">
+
+                    <!-- Show play button only if episode i selected and don not have state Play or Pause -->
+                    <div class="controller-play button"
+                         *ngIf="_selectedIndex == index && (!hasPlayStatePlayForEpisode(episode) && !hasPlayStatePauseForEpisode(episode))"
+                         (click)="playEpisode(episode)">Play</div>
+
+                    <!-- Show status for playing when episode is playing -->
+                    <div class="controller-playing button"
+                         *ngIf="hasPlayStatePlayForEpisode(episode)">Playing</div>
+
+                    <!-- Show status for playing when episode is paused -->
+                    <div class="controller-paused button"
+                         *ngIf="hasPlayStatePauseForEpisode(episode)">Paused</div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- If we have an empty array of episodes, show no-episodes message -->
+        <div class="no-episodes" *ngIf="_episodes && _episodes.length == 0">No episodes available</div>
+    </div>
+</div>

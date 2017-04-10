@@ -42,7 +42,7 @@
     "sw-precache": "^5.0.0",
     "ts-node": "1.2.1",
     "tslint": "^4.3.0",
-    "typescript": "~2.0.0"
+    "typescript": "~2.0.10"
   },
   "scripts": {
     "prod": "ng build -prod && npm run sw",

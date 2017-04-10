@@ -1,0 +1,34 @@
+
+<!-- The container of the player, can be show, hidden fully or hidden partly -->
+<div class="player-container"
+     [ngClass]="{'hide-fully': !hasEpisodeLoaded(), 'hide-partly': !isOpen()}">
+
+    <!-- Show the content if an episode is loaded -->
+    <div class="player-content" *ngIf="hasEpisodeLoaded()">
+        <div class="number-container">{{episodeNumber}}</div>
+        <div class="info-container">
+            <div class="title">{{episodeTitle}}</div>
+            <div class="description">
+                {{episodeDescription}}
+                <div class="elipsis">…</div>
+            </div>
+        </div>
+        <div class="episode-controller">
+            <div class="controller-play" (click)="playEpisode()" [ngClass]="{'show': showPlayButton()}">Play</div>
+            <div class="controller-pause" (click)="pauseEpisode()" [ngClass]="{'show': showPauseButton()}">Pause</div>
+            <div class="controller-stop" (click)="stopEpisode()" [ngClass]="{'show': showStopButton()}">Stop</div>
+        </div>
+        <div class="arrow-container" (click)="toggleOpen()">
+            <input #toggle type="checkbox" class="toggle">
+            <div class="arrow-model"></div>
+        </div>
+
+        <!-- The time line, show only if the stop button is showing (audio is playing)-->
+        <div class="player-timer"
+             *ngIf="showStopButton()"
+             [style.width]="currentTimePercentage + 'vw'"
+             [ngClass]="{'will-change-width': !showPlayButton()}">
+            <div class="timer-marker"></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,206 @@
+@import '../../styles';
+
+.close-container{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 64px;
+  height: 64px;
+  z-index: 10;
+  cursor: pointer;
+
+  div {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    background-color: white;
+    height: 2px;
+    width: 20px;
+
+    &:nth-child(1) {
+      transform:  translate(-50%, -50%) rotate(-135deg);
+
+    }
+
+    &:nth-child(2) {
+      transform: translate(-50%, -50%) rotate(135deg);
+    }
+  }
+}
+
+.podcast-header {
+  position: relative;
+  width: 100%;
+  height: 233px;
+  background-color: #424242;
+  z-index: 5;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16),0 3px 6px rgba(0,0,0,0.23);
+
+  .podcast-item{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    .podcast-main-image {
+      margin: 0 auto;
+      display: block;
+      width: 144px;
+      height: 144px;
+    }
+
+    .podcast-title{
+      font-family: "Open Sans", sans-serif;
+      font-size: 14px;
+      line-height: 23px;
+      font-style: normal;
+      font-variant: normal;
+      font-weight: 400;
+      text-align: center;
+      color: white;
+      white-space: nowrap;
+    }
+    .podcast-author-name{
+      font-family: "Open Sans", sans-serif;
+      font-size: 10px;
+      line-height: 16px;
+      font-style: normal;
+      font-variant: normal;
+      font-weight: 400;
+      text-align: center;
+      color: white;
+      opacity: 0.7;
+    }
+  }
+}
+
+.main-container{
+  height: calc(100vh - 233px);
+
+  &:hover .episode-content {
+    will-change: scroll-position;
+  }
+
+  .episode-content {
+    height: 100%;
+    overflow-y: auto;
+
+    .episode-wrapper {
+      position: relative;
+      height: 64px;
+      cursor: pointer;
+
+      &:not(.active):hover {
+        background-color: #424242;
+      }
+
+      &.active {
+        background-color: #FB5A59;
+        cursor: default;
+
+        &::after {
+          opacity: 1;
+        }
+      }
+
+      &:last-child {
+        margin-bottom: 30px;
+      }
+
+      .episode-item {
+        font-family: "Open Sans", sans-serif;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 400;
+        color: white;
+        height: 100%;
+
+        &::after {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          opacity: 0;
+          box-shadow: 0 3px 6px rgba(0,0,0,0.16),0 3px 6px rgba(0,0,0,0.23), 0 -3px 6px rgba(0,0,0,0.16), 0 -3px 6px rgba(0,0,0,0.23), 0 3px 6px rgba(251,90,89,0.16),0 3px 6px rgba(251,90,89,0.23), 0 -3px 6px rgba(251,90,89,0.16), 0 -3px 6px rgba(251,90,89,0.23);
+        }
+
+        .episode-number {
+          width: 64px;
+          font-size: 28px;
+          line-height: 64px;
+          text-align: center;
+          float: left;
+        }
+
+        .episode-info-container {
+          position: absolute;
+          left: 64px;
+          top: 50%;
+          width: 200px;
+          transform: translateY(-50%);
+
+          .episode-title {
+            font-size: 14px;
+            line-height: 23px;
+            text-align: left;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+          }
+
+          .episode-artist {
+            font-size: 10px;
+            line-height: 16px;
+            text-align: left;
+            opacity: 0.7;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+          }
+        }
+
+        .episode-controller {
+          position: absolute;
+          right: 0;
+          width: 64px;
+          z-index: 10;
+          height: 100%;
+
+          .button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+
+          }
+
+          .controller-play {
+            cursor: pointer;
+          }
+
+          .controller-playing {
+            opacity: 0.5;
+          }
+
+          .controller-paused {
+            opacity: 0.5;
+          }
+        }
+      }
+    }
+
+    .no-episodes {
+      font-family: "Open Sans", sans-serif;
+      font-style: normal;
+      font-variant: normal;
+      font-weight: 400;
+      text-align: center;
+      color: white;
+      height: 64px;
+      font-size: 14px;
+      line-height: 64px;
+      width: 100%;
+    }
+  }
+}

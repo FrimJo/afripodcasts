@@ -1,0 +1,182 @@
+@import '../../styles';
+
+.player-container {
+  position: fixed;
+  width: 100%;
+  height: 100px;
+  bottom: 0;
+  left: 0;
+  background: #FB5A59;
+  transition: transform 400ms;
+  transform: translateY(0%);
+  z-index: 20;
+  box-shadow: 0 -3px 6px rgba(0,0,0,0.16), 0 -3px 6px rgba(0,0,0,0.23), 0 -3px 6px rgba(251,90,89,0.16), 0 -3px 6px rgba(251,90,89,0.23);
+
+
+  font-family: "Open Sans", sans-serif;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  color: white;
+
+  &:hover {
+    will-change: transform;
+  }
+
+  &.hide-partly {
+
+    transform: translateY(70%);
+  }
+
+  &.hide-fully {
+
+    transform: translateY(100%);
+  }
+
+  .player-content {
+    position: relative;
+    height: 100%;
+    padding-left: 64px;
+    padding-right: 64px;
+
+
+    .number-container {
+      text-align: center;
+      font-size: 14px;
+      line-height: 30px;
+
+      position: absolute;
+      left: 0;
+      top: 0;
+
+      width: 64px;
+      height: 30px;
+    }
+
+    .info-container {
+
+      .title {
+        font-size: 14px;
+        line-height: 30px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+
+      }
+
+      .artist {
+        font-size: 10px;
+        line-height: 16px;
+        opacity: 0.7;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+
+      .description {
+        position: relative;
+        max-height: 48px;
+        font-size: 10px;
+        line-height: 16px;
+        overflow: hidden;
+
+        .elipsis {
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          height: 16px;
+          line-height: 16px;
+        }
+      }
+    }
+
+    .episode-controller {
+      display: flex;
+      justify-content: space-between;
+
+      .controller-play {
+        opacity: 0.5;
+      }
+
+      .controller-pause {
+        opacity: 0.5;
+      }
+
+      .controller-stop {
+        opacity: 0.5;
+      }
+
+      .show {
+        opacity: 1;
+        cursor: pointer;
+      }
+    }
+
+    .arrow-container {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 100%;
+      height: 30px;
+
+      &:hover .arrow-model {
+        will-change: transform;
+      }
+
+      .toggle {
+        cursor: pointer;
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        opacity: 0;
+
+        &:checked ~ .arrow-model {
+          transform: translate(-50%, -25%) rotate(-135deg)  ;
+        }
+      }
+
+      .arrow-model {
+        position: absolute;
+        right: 16px;
+        top: 50%;
+        border-left: 2px solid white;
+        border-top: 2px solid white;
+        width: 10px;
+        height: 10px;
+        transform-origin: 25% 25%;
+        transform: translate(-50%, -25%) rotate(45deg);
+        transition: transform 300ms ease-in-out;
+      }
+    }
+
+    .player-timer {
+
+      position: absolute;
+      left: 0;
+      top: -1px;
+      width: 0;
+      height: 2px;
+      background: white;
+      transition: width 1000ms linear;
+
+      &.will-change-width {
+        will-change: width;
+      }
+
+      .timer-marker {
+        position: absolute;
+        right: -3px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 6px;
+        height: 6px;
+        border-radius: 3px;
+        background: white;
+      }
+    }
+  }
+}

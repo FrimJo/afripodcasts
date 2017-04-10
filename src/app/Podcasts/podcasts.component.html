@@ -1,0 +1,25 @@
+
+<!-- Display error message if any -->
+<div class="error-message" *ngIf="showError">{{showError}}</div>
+
+<!-- List of podcasts -->
+<div *ngIf="_podcasts" class="main-container">
+    <div class="podcast-headline">Podcasts</div>
+    <div class="podcast-container">
+
+        <!-- Podcast item -->
+        <div class="podcast-item" *ngFor="let podcast of _podcasts"
+             (click)="goToPodcast(podcast)">
+            <img class="podcast-main-image"src="{{podcast.image}}">
+            <div class="podcast-title">{{podcast.title}}</div>
+            <div class="podcast-author-name">{{podcast.author}}</div>
+        </div>
+
+        <!-- A dummy for filling the list of episodes to a event number-->
+        <div class="podcast-dummy podcast-item"
+             [style.display]="_podcasts.length%2 == 0? 'none' : ''"></div>
+    </div>
+
+    <!-- If we have an empty array of podcats, show no-episodes message -->
+    <div class="no-podcasts" *ngIf="_podcasts && _podcasts.length == 0">No podcasts available at the moment</div>
+</div>
